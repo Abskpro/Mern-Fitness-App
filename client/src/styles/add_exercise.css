@@ -1,0 +1,49 @@
+body{
+    /* background-image:linear-gradient(122deg, #22caa0, #0094db); */
+    font-family:sans-serif;
+    height:100vh;
+    /* width:100%; */
+    text-align:center;
+}
+
+
+.create-ex{
+    margin-top:50px;
+}
+
+.form-co{
+    width:100%;
+    box-sizing:border-box;
+    border:none;
+    max-width:100%;
+    left:35%;
+    text-align:center;
+}
+
+.btn{
+    background-color:#4CAF50;
+    border:none;
+    color:white;
+    padding:15px 32px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:16px;
+}
+
+.workouts{
+    width:auto;
+    height:30px;
+    border-radius:5px;
+    border:2px solid black;
+}
+
+.workouts::-webkit-outer-spin-button,
+.workouts::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+}
+
+.workouts[type=number]{
+    -moz-appearance:textfield;
+}

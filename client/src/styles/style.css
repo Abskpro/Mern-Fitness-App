@@ -1,0 +1,41 @@
+body {
+  /* background-image:linear-gradient(122deg, #22caa0, #0094db); */
+  font-family: sans-serif;
+  height: 100vh;
+  /* width:100%; */
+  text-align: center;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #d5c5c5;
+  text-align: center;
+}
+
+.navbar-nav li,
+.nav-link {
+  display: inline-block;
+}
+
+.nav-link {
+  font-size: 1.5em;
+  color: #000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.workout {
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+li {
+  list-style-type: none;
+}
