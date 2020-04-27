@@ -48,7 +48,11 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Switch>
               <PrivateRoute exact path="/dashboard/" component={MakeExercise} />
-              <PrivateRoute exact path="/dashboard/log" component={Exercises} />
+              <PrivateRoute
+                exact
+                path="/dashboard/log/"
+                component={Exercises}
+              />
             </Switch>
           </div>
         </Router>

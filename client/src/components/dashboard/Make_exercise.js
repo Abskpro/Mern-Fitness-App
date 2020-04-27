@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import SortedData from './sorted-data.component.js';
 
-const MakeExercise = () => {
+const MakeExercise = props => {
   const [workout, updateWorkout] = useState('benchpress');
   const [sets, updateSets] = useState(0);
   const [weight, updateWeight] = useState(0);
@@ -17,10 +19,11 @@ const MakeExercise = () => {
       reps: reps,
     };
 
-    console.log(exercise);
+    const {user} = props.auth;
+    const uid = user.id;
 
     axios
-      .post('http://localhost:5000/api/exercise/add', exercise)
+      .post(`http://localhost:5000/api/exercise/add/${uid}`, exercise)
       .then(res => console.log(res.data))
       .catch(error => {
         console.log(error.response);
@@ -102,4 +105,9 @@ const MakeExercise = () => {
   );
 };
 
-export default MakeExercise;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps)(MakeExercise);

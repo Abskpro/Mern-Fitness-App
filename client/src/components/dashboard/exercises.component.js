@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
@@ -22,7 +24,7 @@ const Exercise = props => (
   </tr>
 );
 
-export default class Exercises extends Component {
+class Exercises extends Component {
   constructor(props) {
     super(props);
 
@@ -51,8 +53,9 @@ export default class Exercises extends Component {
   displayDate(e) {}
 
   deleteExercise(id) {
-    console.log(id);
-    axios.delete('http://localhost:5000/exercise/' + id).then(response => {
+    const {user} = this.props.auth;
+    console.log(user);
+    axios.delete(`http://localhost:5000/exercise/`).then(response => {
       console.log(response.data);
     });
 
@@ -94,3 +97,10 @@ export default class Exercises extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps)(Exercises);

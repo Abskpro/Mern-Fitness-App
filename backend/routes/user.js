@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/key');
 const passport = require('passport');
+const cryto = require('crypto-js');
 
 //load input validation
 const validateRegisterInput = require('../validation/register');
@@ -63,6 +64,7 @@ router.post('/login', (req, res) => {
     if (!user) {
       return res.stauts(404).json({emailnotfound: 'Email not found'});
     }
+
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         const payload = {
@@ -74,7 +76,7 @@ router.post('/login', (req, res) => {
           payload,
           keys.secretOrKey,
           {
-            expiresIn: 31556926,
+            expiresIn: 3600,
           },
           (err, token) => {
             res.json({
