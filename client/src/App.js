@@ -13,8 +13,7 @@ import Login from './components/auth/Login';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import MakeExercise from './components/dashboard/Make_exercise.js';
 import Exercises from './components/dashboard/exercises.component.js';
-import Navbar from './components/layout/navbar.component.js';
-import './styles/style.css';
+import Profile from './components/dashboard/profile.jsx';
 import './styles/add_exercise.css';
 
 // Check for token to keep user logged in
@@ -42,7 +41,6 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
@@ -52,6 +50,11 @@ class App extends Component {
                 exact
                 path="/dashboard/log/"
                 component={Exercises}
+              />
+              <PrivateRoute
+                exact
+                path="/dashboard/profile"
+                component={Profile}
               />
             </Switch>
           </div>

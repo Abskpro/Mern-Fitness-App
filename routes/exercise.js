@@ -15,15 +15,14 @@ router.route('/add/:id').post((req, res) => {
     reps,
     createdBy,
   });
-  console.log(req.params.id);
   newExercise
     .save()
     .then(() => res.json('exercise added'))
     .catch(err => res.status(400).json('error' + err));
 });
 
-router.route('/display').get((req, res) => {
-  Exercise.find()
+router.route('/display/:id').get((req, res) => {
+  Exercise.find({createdBy: req.params.id})
     .then(exercise => res.json(exercise))
     .catch(err => res.status(400).json('error' + err));
 });
@@ -34,5 +33,4 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('error' + err));
 });
 
-module.exports = router;
 module.exports = router;

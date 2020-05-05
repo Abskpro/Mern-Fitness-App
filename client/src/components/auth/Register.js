@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {registerUser} from '../../actions/authActions';
 import classnames from 'classnames';
+// import '../../styles/Landing.css';
 
 class Register extends Component {
   constructor() {
@@ -56,10 +57,6 @@ class Register extends Component {
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
-            </Link>
             <div className="col s12" style={{paddingLeft: '11.250px'}}>
               <h4>
                 <b>Register</b> below
@@ -70,6 +67,7 @@ class Register extends Component {
             </div>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
+                <label htmlFor="name">Name</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.name}
@@ -80,10 +78,10 @@ class Register extends Component {
                     invalid: errors.name,
                   })}
                 />
-                <label htmlFor="name">Name</label>
                 <span className="red-text">{errors.name}</span>
               </div>
               <div className="input-field col s12">
+                <label htmlFor="email">Email</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.email}
@@ -94,10 +92,10 @@ class Register extends Component {
                     invalid: errors.email,
                   })}
                 />
-                <label htmlFor="email">Email</label>
                 <span className="red-text">{errors.email}</span>
               </div>
               <div className="input-field col s12">
+                <label htmlFor="password">Password</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.password}
@@ -108,10 +106,10 @@ class Register extends Component {
                     invalid: errors.password,
                   })}
                 />
-                <label htmlFor="password">Password</label>
                 <span className="red-text">{errors.password}</span>
               </div>
               <div className="input-field col s12">
+                <label htmlFor="password2">Confirm Password</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.password2}
@@ -122,7 +120,6 @@ class Register extends Component {
                     invalid: errors.password2,
                   })}
                 />
-                <label htmlFor="password2">Confirm Password</label>
                 <span className="red-text">{errors.password2}</span>
               </div>
               <div className="col s12" style={{paddingLeft: '11.250px'}}>

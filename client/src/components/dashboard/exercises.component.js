@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import '../../styles/App.css';
+import NavbarComp from '../layout/navbar.component.js';
 
 const Exercise = props => (
   <tr>
@@ -12,7 +14,7 @@ const Exercise = props => (
     <td>{props.exercise.reps}</td>
     <td>{props.exercise.date.slice(0, 10)}</td>
     <td>
-      <Link to={'/edit/' + props.exercise._id}>edit</Link> |{' '}
+      <Link to={'/edit/' + props.exercise._id}>edit</Link> |
       <a
         href="#"
         onClick={() => {
@@ -37,8 +39,9 @@ class Exercises extends Component {
   }
 
   componentDidMount() {
+    const {user} = this.props.auth;
     axios
-      .get('http://localhost:5000/api/exercise/display/')
+      .get(`http://localhost:5000/api/exercise/display/${user.id}`)
       .then(response => {
         this.setState({exercises: response.data});
       })
@@ -55,7 +58,7 @@ class Exercises extends Component {
   deleteExercise(id) {
     const {user} = this.props.auth;
     console.log(user);
-    axios.delete(`http://localhost:5000/exercise/`).then(response => {
+    axios.delete(`http://localhost:5000/api/exercise/` + id).then(response => {
       console.log(response.data);
     });
 
@@ -80,6 +83,7 @@ class Exercises extends Component {
   render() {
     return (
       <div>
+        <NavbarComp />
         <h3>Exercise list</h3>
         <table className="table" border="1px ">
           <thead className="thead-light">

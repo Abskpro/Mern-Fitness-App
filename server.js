@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport'); //for  authentication
 
 const UsersRouter = require('./routes/user');
-const exercisesRouter = require('./routes/exercise');
+const ExercisesRouter = require('./routes/exercise');
+const ProfileRouter = require('./routes/profile.js');
 const InitiateMongoServer = require('./config/db');
 
 require('dotenv').config();
@@ -29,7 +30,8 @@ app.use(passport.initialize());
 //test if api is working or notj:w
 
 app.use('/api/users', UsersRouter);
-app.use('/api/exercise', exercisesRouter);
+app.use('/api/exercise', ExercisesRouter);
+app.use('/api/profile', ProfileRouter);
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
