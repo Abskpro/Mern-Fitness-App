@@ -29,11 +29,17 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      // console.log(nextProps.auth);
-      this.props.history.push({
-        pathname: '/dashboard',
-        state: nextProps.auth,
-      });
+      if (nextProps.auth.user.profile) {
+        this.props.history.push({
+          pathname: '/dashboard',
+          state: nextProps.auth,
+        });
+      } else {
+        this.props.history.push({
+          pathname: '/profileform',
+          state: nextProps.auth,
+        });
+      }
     }
 
     if (nextProps.errors) {
@@ -73,7 +79,7 @@ class Login extends Component {
                 Don't have an account? <Link to="/register">Register</Link>
               </p>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate onSubmit={this.onSubmit} className="log">
               <div className="input-field col s12">
                 <label htmlFor="email">Email</label>
                 <input

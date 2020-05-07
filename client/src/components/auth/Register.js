@@ -65,7 +65,7 @@ class Register extends Component {
                 Already have an account? <Link to="/login">Log in</Link>
               </p>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate onSubmit={this.onSubmit} className="log">
               <div className="input-field col s12">
                 <label htmlFor="name">Name</label>
                 <input

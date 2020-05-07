@@ -3,10 +3,20 @@ const Schema = mongoose.Schema;
 const timestamps = require('mongoose-timestamp');
 
 const profileSchema = {
-  name: {
+  createdBy: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  name: {
+    fname: {
+      type: String,
+      required: true,
+    },
+    lname: {
+      type: String,
+      required: true,
+    },
   },
   age: {
     type: Number,
@@ -24,7 +34,7 @@ const profileSchema = {
     type: String,
     required: true,
   },
-  goal: {
+  workout: {
     type: String,
     required: true,
   },

@@ -61,7 +61,7 @@ router.post('/login', (req, res) => {
   User.findOne({email}).then(user => {
     //check if user exists
     if (!user) {
-      return res.stauts(404).json({emailnotfound: 'Email not found'});
+      return res.status(404).json({emailnotfound: 'Email not found'});
     }
 
     bcrypt.compare(password, user.password).then(isMatch => {
@@ -69,6 +69,7 @@ router.post('/login', (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
+          profile: user.profile,
         };
 
         jwt.sign(
@@ -88,6 +89,12 @@ router.post('/login', (req, res) => {
         return res.status(400).json({passwordincorrect: 'Password incorrect'});
       }
     });
+  });
+});
+
+router.post('/profile/:id', (req, res) => {
+  User.findOneAndUpdate({_id: req.params.id}, {profile: true}).then(() => {
+    res.json({success: 'profile created'});
   });
 });
 

@@ -41,7 +41,7 @@ class Exercises extends Component {
   componentDidMount() {
     const {user} = this.props.auth;
     axios
-      .get(`http://localhost:5000/api/exercise/display/${user.id}`)
+      .get(`/api/exercise/display/${user.id}`)
       .then(response => {
         this.setState({exercises: response.data});
       })
@@ -58,7 +58,7 @@ class Exercises extends Component {
   deleteExercise(id) {
     const {user} = this.props.auth;
     console.log(user);
-    axios.delete(`http://localhost:5000/api/exercise/` + id).then(response => {
+    axios.delete(`/api/exercise/` + id).then(response => {
       console.log(response.data);
     });
 
@@ -106,5 +106,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
 });
-
 export default connect(mapStateToProps)(Exercises);
