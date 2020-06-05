@@ -29,7 +29,7 @@ const NavbarComp = props => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="/dashboard/home">Home</Nav.Link>
           <Nav.Link href="/dashboard/profile">Profile</Nav.Link>
           <NavDropdown title="Exercise" id="basic-nav-dropdown">
             <NavDropdown.Item href="/dashboard/">Add Workout</NavDropdown.Item>

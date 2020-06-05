@@ -25,7 +25,7 @@ const MakeExercise = props => {
     const uid = user.id;
 
     axios
-      .post(`/api/exercise/add/${uid}`, exercise)
+      .post(`http://localhost:7000/api/exercise/add/${uid}`, exercise)
       .then(res => console.log(res.data))
       .catch(error => {
         console.log(error.response);

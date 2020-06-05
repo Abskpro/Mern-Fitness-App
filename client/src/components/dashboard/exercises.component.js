@@ -40,10 +40,12 @@ class Exercises extends Component {
 
   componentDidMount() {
     const {user} = this.props.auth;
+    console.log(user.id);
     axios
-      .get(`/api/exercise/display/${user.id}`)
+      .get(`http://localhost:7000/api/exercise/display/${user.id}`)
       .then(response => {
         this.setState({exercises: response.data});
+        console.log(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -58,7 +60,7 @@ class Exercises extends Component {
   deleteExercise(id) {
     const {user} = this.props.auth;
     console.log(user);
-    axios.delete(`/api/exercise/` + id).then(response => {
+    axios.delete(`http://localhost:7000/api/exercise/` + id).then(response => {
       console.log(response.data);
     });
 

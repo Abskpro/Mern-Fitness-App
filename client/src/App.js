@@ -15,6 +15,7 @@ import MakeExercise from './components/dashboard/Make_exercise.js';
 import Exercises from './components/dashboard/exercises.component.js';
 import Profileform from './components/dashboard/Form.component.jsx';
 import Profile from './components/dashboard/Profile.component.jsx';
+import Home from './components/dashboard/home.component.jsx';
 import './styles/add_exercise.css';
 
 // Check for token to keep user logged in
@@ -58,6 +59,7 @@ class App extends Component {
                 path="/dashboard/profile"
                 component={Profile}
               />
+              <PrivateRoute exact path="/dashboard/home" component={Home} />
             </Switch>
           </div>
         </Router>
