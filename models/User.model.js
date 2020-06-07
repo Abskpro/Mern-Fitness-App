@@ -16,11 +16,29 @@ const UserSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
+    required: true,
     default: Date.now(),
   },
   profile: {
     type: Boolean,
+    required: true,
     default: false,
+  },
+  pushData: {
+    endpoint: {
+      type: String,
+      default: 'data',
+    },
+    keys: {
+      p256dh: {
+        type: String,
+        default: 'data',
+      },
+      auth: {
+        type: String,
+        default: 'data',
+      },
+    },
   },
 });
 

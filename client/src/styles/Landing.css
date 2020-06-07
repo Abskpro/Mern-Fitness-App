@@ -28,3 +28,9 @@ input {
 li {
   list-style-type: none;
 }
+
+.push-notify {
+  float: right;
+  border: 0.5px dotted black;
+  padding: 10px 5px 10px 5px;
+}

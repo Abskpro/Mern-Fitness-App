@@ -1,6 +1,7 @@
 const express = require('express');
 const webpush = require('web-push');
 const router = require('express').Router();
+const User = require('../models/User.model');
 
 const app = express();
 
@@ -16,17 +17,33 @@ webpush.setVapidDetails(
 );
 
 //subscribe Route
-router.route('/subscribe').post((req, res, next) => {
+router.route('/subscribe/:id').put((req, res, next) => {
   //get pushSubscrption
   const subscription = req.body;
-  console.log(subscription);
   //send 201 resource created
-  res.status(201).json({});
+  // res.status(201).json({});
 
   //create payload
   const payload = JSON.stringify({title: 'Push test'});
+  console.log(subscription);
 
-  //pass object into the sendnotification
+  User.findOneAndUpdate(
+    {_id: req.params.id},
+    {
+      pushData: {
+        endpoint: subscription.endpoint,
+        keys: {
+          p256dh: subscription.keys.p256dh,
+          auth: subscription.keys.auth,
+        },
+      },
+    },
+  )
+    .then(() => {
+      res.json({success: 'push created'});
+    })
+    .catch(err => console.error(err));
+  ////pass object into the sendnotification
   webpush
     .sendNotification(subscription, payload)
     .catch(err => console.error(err));

@@ -37,7 +37,7 @@ export function register(config) {
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(registration => {
-          send(registration);
+          // send(registration);
           console.log(
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit http://bit.ly/CRA-PWA',
@@ -51,38 +51,38 @@ export function register(config) {
   }
 }
 
-async function send(registration) {
-  const subscription = await registration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
-  });
-  console.log('Push Registered...');
-  // Send Push Notification
-  console.log('Sending Push...');
-  await fetch('http://localhost:7000/api/push/subscribe', {
-    method: 'POST',
-    body: JSON.stringify(subscription),
-    headers: {
-      'content-type': 'application/json',
-    },
-  });
-  console.log('Push Sent...');
-}
+// async function send(registration) {
+//   const subscription = await registration.pushManager.subscribe({
+//     userVisibleOnly: true,
+//     applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
+//   });
+//   console.log('Push Registered...');
+//   // Send Push Notification
+//   console.log('Sending Push...');
+//   await fetch('http://localhost:7000/api/push/subscribe', {
+//     method: 'POST',
+//     body: JSON.stringify(subscription),
+//     headers: {
+//       'content-type': 'application/json',
+//     },
+//   });
+//   console.log('Push Sent...');
+// }
 
-function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
+// function urlBase64ToUint8Array(base64String) {
+//   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+//   const base64 = (base64String + padding)
+//     .replace(/\-/g, '+')
+//     .replace(/_/g, '/');
 
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
+//   const rawData = window.atob(base64);
+//   const outputArray = new Uint8Array(rawData.length);
 
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
+//   for (let i = 0; i < rawData.length; ++i) {
+//     outputArray[i] = rawData.charCodeAt(i);
+//   }
+//   return outputArray;
+// }
 
 function registerValidSW(swUrl, config) {
   navigator.serviceWorker
