@@ -29,7 +29,7 @@ const MakeExercise = props => {
     // const uid = user.id;
 
     axios
-      .post(`http://localhost:7000/api/exercise/add/${uid}`, exercise)
+      .post(`/api/exercise/add/${uid}`, exercise)
       .then(res => console.log(res.data))
       .catch(error => {
         console.log(error.response);
@@ -54,7 +54,7 @@ const MakeExercise = props => {
       console.log('Push Registered...');
       // Send Push Notification
       console.log('Sending Push...');
-      await fetch(`http://localhost:7000/api/push/subscribe/${uid}`, {
+      await fetch(`/api/push/subscribe/${uid}`, {
         method: 'PUT',
         body: JSON.stringify(subscription),
         headers: {

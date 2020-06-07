@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport'); //for  authentication
+const path = require('path');
 
 const UsersRouter = require('./routes/user');
 const ExercisesRouter = require('./routes/exercise');
@@ -35,7 +36,12 @@ app.use('/api/exercise', ExercisesRouter);
 app.use('/api/profile', ProfileRouter);
 app.use('/api/push', PushNotification);
 
-// app.use("/api/push", PushNotification);
+if (procee.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
